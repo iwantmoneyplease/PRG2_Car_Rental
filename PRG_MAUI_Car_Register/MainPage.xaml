@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PRG_MAUI_Car_Register.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Image Source="car.jpg" Aspect="AspectFit" HeightRequest="150" Margin="0,0,0,20"/>
+            
+            <HorizontalStackLayout Spacing="20" HorizontalOptions="StartAndExpand">
+                <Entry x:Name="entryRegistrationNumber" Placeholder="Registreringsnummer" />
+                <Label Text="Välj typ:" VerticalOptions="Center"/>
+                <Picker x:Name="pickerType" TextColor="DarkRed">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Bil</x:String>
+                        <x:String>MC</x:String>
+                        <x:String>Lastbil</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            </HorizontalStackLayout>
+            <Entry x:Name="entryManufacturer" Placeholder="Tillverkare" />
+            <Entry x:Name="entryModel" Placeholder="Modell" />
+            <Button x:Name="buttonRegister" Text="Registrera" Clicked="OnRegisterClicked" Margin="0,0,0,20" BackgroundColor="DarkRed"/>
+
+            <Label Text="Kategori:" FontAttributes="Bold" />
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="0,0,0,20" Spacing="10" >
+                <RadioButton x:Name="radioAll" Content="Alla" IsChecked="True" CheckedChanged="OnRadioCheckedChanged" />
+                <RadioButton x:Name="radioCar" Content="Bilar" CheckedChanged="OnRadioCheckedChanged" />
+                <RadioButton x:Name="radioMC" Content="MC" CheckedChanged="OnRadioCheckedChanged" />
+                <RadioButton x:Name="radioTruck" Content="Lastbil" CheckedChanged="OnRadioCheckedChanged" />
+            </HorizontalStackLayout>
+
+            <ListView x:Name="listViewVehicles" Margin="0,0,0,20"/>
+
+            <HorizontalStackLayout HorizontalOptions="FillAndExpand" Spacing="20">
+                <Entry x:Name="entrySearchRegistrationNumber" HorizontalOptions="FillAndExpand" Placeholder="Sök på registreringsnummer"></Entry>
+                <Button x:Name="buttonSearch" Text="Sök" HorizontalOptions="End" BackgroundColor="DarkRed" TextColor="White" Clicked="OnSearchClicked"/>
+            </HorizontalStackLayout>
+            <Label x:Name="labelSearchResult" Text="Sökresultat visas här..." TextColor="DarkRed" Margin="0,20,0,0"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
