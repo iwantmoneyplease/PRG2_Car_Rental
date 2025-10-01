@@ -22,6 +22,7 @@
             </HorizontalStackLayout>
             <Entry x:Name="entryManufacturer" Placeholder="Tillverkare" />
             <Entry x:Name="entryModel" Placeholder="Modell" />
+            <Entry x:Name="entryModelYear" Placeholder="År" />
             <Button x:Name="buttonRegister" Text="Registrera" Clicked="OnRegisterClicked" Margin="0,0,0,20" BackgroundColor="DarkRed"/>
 
             <Label Text="Kategori:" FontAttributes="Bold" />

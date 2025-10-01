@@ -20,6 +20,7 @@
                 vehicle.RegistrationNumber = regNr;
                 vehicle.Manufacturer = entryManufacturer.Text;
                 vehicle.Model = entryModel.Text;
+                vehicle.ModelYear = entryModelYear.Text;
 
                 vehicleList.Add(vehicle);
                 listViewVehicles.ItemsSource = null;
@@ -81,7 +82,8 @@
                                          $"Registreringsnummer: {foundVehicle.RegistrationNumber}\n" +
                                          $"Tillverkare: {foundVehicle.Manufacturer}\n" +
                                          $"Modell: {foundVehicle.Model}\n" +
-                                         $"Typ: {foundVehicle.VehicleType}";
+                                         $"Typ: {foundVehicle.VehicleType}" +
+                                         $"År: {foundVehicle.ModelYear}";
             }
             else
             {

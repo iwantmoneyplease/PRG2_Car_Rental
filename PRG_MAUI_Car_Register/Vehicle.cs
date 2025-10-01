@@ -8,6 +8,7 @@
         private string registrationNumber = string.Empty;
         private string manufacturer = string.Empty;
         private string model = string.Empty;
+        private int modelYear = 0;
 
         // Konstruktor (en metod med samma namn som klassen, som returnerar ett objekt)
         public Vehicle(Type vehicleType) // en konstruktor kan, men måste inte, ta parametrar
@@ -64,22 +65,67 @@
         public string Model
         {
             get { return model; }
-            set { this.model = value; }
+            set 
+            { 
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Fältet model kan ej vara tomt");
+                }
+
+                foreach (char c in value)
+                {
+                    if (!char.IsLetter(c) && c != ' ' && c != '-')
+                        throw new ArgumentException("Enbart alfabetet, mellanrum, och - är tillåtna");
+                }
+
+            }
+        }
+
+        public string ModelYear
+        {
+            get { return modelYear.ToString(); }
+            set
+            {
+                if (int.TryParse(value, out int year))
+                {
+                    if (year >= 1000 && year <= 2999)
+                    {
+                        modelYear = year;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Året måste vara mellan 1000 och 2999");
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException("Årfältet kan enbart ha siffror");
+                }
+            }
         }
 
         //TODO Modell ska valideras, sparas i objektet och visas i UI
         public string Manufacturer
         {
             get { return manufacturer; }
-            set { this.manufacturer = value; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Fältet tillverkare kan ej vara tomt");
+                }
+
+                foreach (char c in value)
+                {
+                    if (!char.IsLetter(c) && c != ' ' && c != '-')
+                        throw new ArgumentException("Enbart alfabetet, mellanrum, och - är tillåtna");
+                }
+
+                this.manufacturer = value.ToLower();
+                manufacturer = char.ToUpper(this.manufacturer[0]) + this.manufacturer.Substring(1);
+            }
         }
 
-        //TODO Att spara årsmodell ska möjliggöras, ska valideras, sparas i objektet och visas i UI
-
-
-        // Klassens  eventuella övriga metoder brukar finnas här, här en override av ToString()
-
-        //TODO Modifiera overriden på ToString() så att allt visas som önskat i UIs listBox
         public override string ToString()
         {
             return this.registrationNumber + "\t" + this.vehicleType + "\t" + this.manufacturer + "\t" + this.model;
