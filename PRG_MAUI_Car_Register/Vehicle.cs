@@ -28,7 +28,7 @@
                     for (int i = 0; i < 3; i++)
                     {
                         if (!char.IsLetter(value[i]))
-                            throw new ArgumentException("Inkorrekt registreringsnummer: De första tre tecknen måste vara bokstäver.");
+                            throw new ArgumentException("Inkorret registreringsnummer: De första tre tecknen måste vara bokstäver.");
                     }
 
                     for (int i = 3; i < 6; i++)
@@ -36,12 +36,12 @@
                         if (i < 5)
                         {
                             if (!char.IsDigit(value[i]))
-                                throw new ArgumentException("Inkorrekt registreringsnummer: Det fjärde och femte tecknet måste vara siffror.");
+                                throw new ArgumentException("Inkorret registreringsnummer: Det fjärde och femte tecknet måste vara siffror.");
                         }
                         else
                         {
                             if (!char.IsDigit(value[i]) && !char.IsLetter(value[i]))
-                                throw new ArgumentException("Inkorrekt registreringsnummer: Det sjätte tecknet måste vara en siffra eller en bokstav.");
+                                throw new ArgumentException("Inkorret registreringsnummer: Det sjätte tecknet måste vara en siffra eller en bokstav.");
                         }
                     }
                 }
@@ -74,8 +74,8 @@
 
                 foreach (char c in value)
                 {
-                    if (!char.IsLetter(c) && !char.IsDigit(c) && c != ' ' && c != '-')
-                        throw new ArgumentException("Enbart alfabetet, siffror, mellanrum, och - är tillåtna");
+                    if (!char.IsLetter(c) && c != ' ' && c != '-')
+                        throw new ArgumentException("Enbart alfabetet, mellanrum, och - är tillåtna");
                 }
 
             }
@@ -88,13 +88,13 @@
             {
                 if (int.TryParse(value, out int year))
                 {
-                    if (year >= 1896 && year <= DateTime.Now.Year)
+                    if (year >= 1000 && year <= 2999)
                     {
                         modelYear = year;
                     }
                     else
                     {
-                        throw new ArgumentException("Årsmodellen måste vara riktigt");
+                        throw new ArgumentException("Året måste vara mellan 1000 och 2999");
                     }
                 }
                 else
