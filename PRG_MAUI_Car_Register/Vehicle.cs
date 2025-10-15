@@ -66,20 +66,15 @@
         {
             get { return model; }
             set 
-            { 
-
-                if (string.IsNullOrWhiteSpace(value))
+            {
+                if (!value.All(char.IsLetterOrDigit))
                 {
-                    throw new ArgumentException("Fältet model kan ej vara tomt");
-
+                    throw new ArgumentException("Måste vara ett giltigt innehåll");
                 }
-
-                foreach (char c in value)
+                else
                 {
-                    if (!char.IsLetter(c) && !char.IsDigit(c) && c != ' ' && c != '-') { }
-                        throw new ArgumentException("Enbart alfabetet, siffror, mellanrum, och - är tillåtna");
+                    this.model = value;
                 }
-
             }
         }
 
@@ -112,18 +107,15 @@
             get { return manufacturer; }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (!value.All(char.IsLetterOrDigit))
                 {
-                    throw new ArgumentException("Fältet tillverkare kan ej vara tomt");
+                    throw new ArgumentException("Måste vara ett giltigt innehåll");
+                }
+                else
+                {
+                    this.manufacturer = value;
                 }
 
-                foreach (char c in value)
-                {
-                    if (!char.IsLetter(c) && c != ' ' && c != '-')
-                        throw new ArgumentException("Enbart alfabetet, mellanrum, och - är tillåtna");
-                }
-
-                this.manufacturer = value;
             }
         }
 
