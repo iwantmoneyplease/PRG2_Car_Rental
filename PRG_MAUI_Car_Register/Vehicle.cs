@@ -1,6 +1,6 @@
 ﻿namespace PRG_MAUI_Car_Register
 {
-    class Vehicle
+    abstract class Vehicle
     {
         // Medlemsvariabler
         public enum Type { Bil, MC, Lastbil };
@@ -67,14 +67,16 @@
             get { return model; }
             set 
             { 
+
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Fältet model kan ej vara tomt");
+
                 }
 
                 foreach (char c in value)
                 {
-                    if (!char.IsLetter(c) && !char.IsDigit(c) && c != ' ' && c != '-')
+                    if (!char.IsLetter(c) && !char.IsDigit(c) && c != ' ' && c != '-') { }
                         throw new ArgumentException("Enbart alfabetet, siffror, mellanrum, och - är tillåtna");
                 }
 
@@ -128,6 +130,30 @@
         public override string ToString()
         {
             return this.registrationNumber + "\t" + this.vehicleType + "\t" + this.manufacturer + "\t" + this.model + "\t" + this.modelYear;
+        }
+    }
+
+    class Car : Vehicle
+    {
+        public Car() : base(Type.Bil)
+        {
+
+        }
+    }
+
+    class Motorcycle : Vehicle
+    {
+        public Motorcycle() : base(Type.MC)
+        {
+
+        }
+    }
+
+    class Truck : Vehicle
+    {
+        public Truck() : base(Type.Lastbil)
+        {
+
         }
     }
 }

@@ -12,29 +12,52 @@
 
         private void OnRegisterClicked(object sender, EventArgs e)
         {
-            try
+            if (entryManufacturer.Text != "" && entryModel.Text != "")
             {
-                Vehicle vehicle = new Vehicle((Vehicle.Type)pickerType.SelectedIndex);
+                try
+                {
+                    Vehicle vehicle;
 
-                string regNr = entryRegistrationNumber.Text;
-                vehicle.RegistrationNumber = regNr;
-                vehicle.Manufacturer = entryManufacturer.Text;
-                vehicle.Model = entryModel.Text;
-                vehicle.ModelYear = entryModelYear.Text;
+                    switch ((Vehicle.Type)pickerType.SelectedIndex)
+                    {
+                        case Vehicle.Type.Bil:
+                        {
+                            vehicle = new Car();
+                            break;
+                        }
+                        case Vehicle.Type.MC:
+                        {
+                            vehicle = new Motorcycle();
+                            break;
+                        }
+                        case Vehicle.Type.Lastbil:
+                        {
+                            vehicle = new Truck();
+                            break;
+                        }
+                    }
 
-                vehicleList.Add(vehicle);
-                listViewVehicles.ItemsSource = null;
-                listViewVehicles.ItemsSource = vehicleList;
+                    string regNr = entryRegistrationNumber.Text;
+                    vehicle.RegistrationNumber = regNr;
+                    vehicle.Manufacturer = entryManufacturer.Text;
+                    vehicle.Model = entryModel.Text;
+                    vehicle.ModelYear = entryModelYear.Text;
 
-                entryRegistrationNumber.Text = string.Empty;
-                entryManufacturer.Text = string.Empty;
-                entryModel.Text = string.Empty;
-                entryModelYear.Text = string.Empty;
+                    vehicleList.Add(vehicle);
+                    listViewVehicles.ItemsSource = null;
+                    listViewVehicles.ItemsSource = vehicleList;
+
+                    entryRegistrationNumber.Text = string.Empty;
+                    entryManufacturer.Text = string.Empty;
+                    entryModel.Text = string.Empty;
+                    entryModelYear.Text = string.Empty;
+                }
+                catch (ArgumentException ex)
+                {
+                    DisplayAlert("Fel", ex.Message, "OK");
+                }
             }
-            catch (ArgumentException ex)
-            {
-                DisplayAlert("Fel", ex.Message, "OK");
-            }
+
         }
 
         private void OnRadioCheckedChanged(object sender, CheckedChangedEventArgs e)
