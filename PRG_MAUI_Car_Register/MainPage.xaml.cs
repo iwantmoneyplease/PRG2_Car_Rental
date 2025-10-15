@@ -29,6 +29,7 @@
                 entryRegistrationNumber.Text = string.Empty;
                 entryManufacturer.Text = string.Empty;
                 entryModel.Text = string.Empty;
+                entryModelYear.Text = string.Empty;
             }
             catch (ArgumentException ex)
             {
@@ -82,7 +83,7 @@
                                          $"Registreringsnummer: {foundVehicle.RegistrationNumber}\n" +
                                          $"Tillverkare: {foundVehicle.Manufacturer}\n" +
                                          $"Modell: {foundVehicle.Model}\n" +
-                                         $"Typ: {foundVehicle.VehicleType}" +
+                                         $"Typ: {foundVehicle.VehicleType}\n" +
                                          $"År: {foundVehicle.ModelYear}";
             }
             else

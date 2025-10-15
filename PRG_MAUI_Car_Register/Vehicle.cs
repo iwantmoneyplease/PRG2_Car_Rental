@@ -28,7 +28,7 @@
                     for (int i = 0; i < 3; i++)
                     {
                         if (!char.IsLetter(value[i]))
-                            throw new ArgumentException("Inkorret registreringsnummer: De första tre tecknen måste vara bokstäver.");
+                            throw new ArgumentException("Inkorrekt registreringsnummer: De första tre tecknen måste vara bokstäver.");
                     }
 
                     for (int i = 3; i < 6; i++)
@@ -36,12 +36,12 @@
                         if (i < 5)
                         {
                             if (!char.IsDigit(value[i]))
-                                throw new ArgumentException("Inkorret registreringsnummer: Det fjärde och femte tecknet måste vara siffror.");
+                                throw new ArgumentException("Inkorrekt registreringsnummer: Det fjärde och femte tecknet måste vara siffror.");
                         }
                         else
                         {
                             if (!char.IsDigit(value[i]) && !char.IsLetter(value[i]))
-                                throw new ArgumentException("Inkorret registreringsnummer: Det sjätte tecknet måste vara en siffra eller en bokstav.");
+                                throw new ArgumentException("Inkorrekt registreringsnummer: Det sjätte tecknet måste vara en siffra eller en bokstav.");
                         }
                     }
                 }
@@ -121,14 +121,13 @@
                         throw new ArgumentException("Enbart alfabetet, mellanrum, och - är tillåtna");
                 }
 
-                this.manufacturer = value.ToLower();
-                manufacturer = char.ToUpper(this.manufacturer[0]) + this.manufacturer.Substring(1);
+                this.manufacturer = value;
             }
         }
 
         public override string ToString()
         {
-            return this.registrationNumber + "\t" + this.vehicleType + "\t" + this.manufacturer + "\t" + this.model;
+            return this.registrationNumber + "\t" + this.vehicleType + "\t" + this.manufacturer + "\t" + this.model + "\t" + this.modelYear;
         }
     }
 }
