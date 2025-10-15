@@ -74,8 +74,8 @@
 
                 foreach (char c in value)
                 {
-                    if (!char.IsLetter(c) && c != ' ' && c != '-')
-                        throw new ArgumentException("Enbart alfabetet, mellanrum, och - är tillåtna");
+                    if (!char.IsLetter(c) && !char.IsDigit(c) && c != ' ' && c != '-')
+                        throw new ArgumentException("Enbart alfabetet, siffror, mellanrum, och - är tillåtna");
                 }
 
             }
@@ -88,13 +88,13 @@
             {
                 if (int.TryParse(value, out int year))
                 {
-                    if (year >= 1000 && year <= 2999)
+                    if (year >= 1895 && year <= DateTime.Now.Year)
                     {
                         modelYear = year;
                     }
                     else
                     {
-                        throw new ArgumentException("Året måste vara mellan 1000 och 2999");
+                        throw new ArgumentException("Året måste vara riktigt");
                     }
                 }
                 else
