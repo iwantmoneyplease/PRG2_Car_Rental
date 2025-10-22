@@ -1,4 +1,6 @@
-﻿namespace PRG_MAUI_Car_Register
+﻿using PRG_MAUI_Car_Register.Model;
+
+namespace PRG_MAUI_Car_Register
 {
     public partial class MainPage : ContentPage
     {

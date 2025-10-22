@@ -1,4 +1,4 @@
-﻿namespace PRG_MAUI_Car_Register
+﻿namespace PRG_MAUI_Car_Register.Model
 {
     abstract class Vehicle
     {
@@ -58,7 +58,7 @@
         public Type VehicleType
         {
             get { return vehicleType; }
-            set { this.vehicleType = value; }
+            set { vehicleType = value; }
         }
 
         //TODO Tillverkare ska valideras, sparas i objektet och visas i UI
@@ -73,7 +73,7 @@
                 }
                 else
                 {
-                    this.model = value;
+                    model = value;
                 }
             }
         }
@@ -113,7 +113,7 @@
                 }
                 else
                 {
-                    this.manufacturer = value;
+                    manufacturer = value;
                 }
 
             }
@@ -121,7 +121,7 @@
 
         public override string ToString()
         {
-            return this.registrationNumber + "\t" + this.vehicleType + "\t" + this.manufacturer + "\t" + this.model + "\t" + this.modelYear;
+            return registrationNumber + "\t" + vehicleType + "\t" + manufacturer + "\t" + model + "\t" + modelYear;
         }
     }
 

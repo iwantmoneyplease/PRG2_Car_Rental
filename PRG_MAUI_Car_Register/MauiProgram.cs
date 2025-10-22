@@ -1,8 +1,20 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 using Android.OS;
-using Android.Views; // Behövs för SetStatusBarColor
+using Android.Views;
 
+<<<<<<< TODO: Unmerged change from project 'PRG_MAUI_Car_Register (net9.0-windows10.0.19041.0)', Before:
+=======
+using PRG_MAUI_Car_Register;
+using PRG_MAUI_Car_Register.ModelView;
+using PRG_MAUI_Car_Register;
+>>>>>>> After
+
+<<<<<<< TODO: Unmerged change from project 'PRG_MAUI_Car_Register (net9.0-windows10.0.19041.0)', Before:
+=======
+using PRG_MAUI_Car_Register;
+using PRG_MAUI_Car_Register.ModelView;
+>>>>>>> After
 #if WINDOWS
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
