@@ -1,6 +1,6 @@
-﻿namespace PRG_MAUI_Car_Register
+﻿namespace PRG_MAUI_Car_Register.Model
 {
-    class Vehicle
+    abstract class Vehicle
     {
         // Medlemsvariabler
         public enum Type { Bil, MC, Lastbil };
@@ -58,7 +58,7 @@
         public Type VehicleType
         {
             get { return vehicleType; }
-            set { this.vehicleType = value; }
+            set { vehicleType = value; }
         }
 
         //TODO Tillverkare ska valideras, sparas i objektet och visas i UI
@@ -66,18 +66,15 @@
         {
             get { return model; }
             set 
-            { 
-                if (string.IsNullOrWhiteSpace(value))
+            {
+                if (!value.All(char.IsLetterOrDigit))
                 {
-                    throw new ArgumentException("Fältet model kan ej vara tomt");
+                    throw new ArgumentException("Måste vara ett giltigt innehåll");
                 }
-
-                foreach (char c in value)
+                else
                 {
-                    if (!char.IsLetter(c) && !char.IsDigit(c) && c != ' ' && c != '-')
-                        throw new ArgumentException("Enbart alfabetet, siffror, mellanrum, och - är tillåtna");
+                    model = value;
                 }
-
             }
         }
 
@@ -110,24 +107,45 @@
             get { return manufacturer; }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (!value.All(char.IsLetterOrDigit))
                 {
-                    throw new ArgumentException("Fältet tillverkare kan ej vara tomt");
+                    throw new ArgumentException("Måste vara ett giltigt innehåll");
+                }
+                else
+                {
+                    manufacturer = value;
                 }
 
-                foreach (char c in value)
-                {
-                    if (!char.IsLetter(c) && c != ' ' && c != '-')
-                        throw new ArgumentException("Enbart alfabetet, mellanrum, och - är tillåtna");
-                }
-
-                this.manufacturer = value;
             }
         }
 
         public override string ToString()
         {
-            return this.registrationNumber + "\t" + this.vehicleType + "\t" + this.manufacturer + "\t" + this.model + "\t" + this.modelYear;
+            return registrationNumber + "\t" + vehicleType + "\t" + manufacturer + "\t" + model + "\t" + modelYear;
+        }
+    }
+
+    class Car : Vehicle
+    {
+        public Car() : base(Type.Bil)
+        {
+
+        }
+    }
+
+    class Motorcycle : Vehicle
+    {
+        public Motorcycle() : base(Type.MC)
+        {
+
+        }
+    }
+
+    class Truck : Vehicle
+    {
+        public Truck() : base(Type.Lastbil)
+        {
+
         }
     }
 }
