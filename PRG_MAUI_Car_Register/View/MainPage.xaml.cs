@@ -11,8 +11,6 @@ namespace PRG_MAUI_Car_Register
         {
             InitializeComponent();
             pickerType.SelectedIndex = 0;
-
-            // a comment
         }
 
         private void OnRegisterClicked(object sender, EventArgs e)
@@ -21,69 +19,57 @@ namespace PRG_MAUI_Car_Register
             {
                 try
                 {
-                    Car car = new Car();
-                    Motorcycle motorcycle = new Motorcycle();
-                    Truck truck = new Truck();
+                    Vehicle vehicle;
 
                     switch ((Vehicle.Type)pickerType.SelectedIndex)
                     {
                         case Vehicle.Type.Bil:
-                        {
-                            car = new Car();
 
-                                string regNr = entryRegistrationNumber.Text;
-                                car.RegistrationNumber = regNr;
-                                car.Manufacturer = entryManufacturer.Text;
-                                car.Model = entryModel.Text;
-                                car.ModelYear = entryModelYear.Text;
+                            vehicle = new Car();
+                            vehicle.RegistrationNumber = entryRegistrationNumber.Text;
+                            vehicle.Manufacturer = entryManufacturer.Text;
+                            vehicle.Model = entryModel.Text;
+                            vehicle.ModelYear = entryModelYear.Text;
+                            break;
 
-                                vehicleList.Add(car);
-                                listViewVehicles.ItemsSource = null;
-                                listViewVehicles.ItemsSource = vehicleList;
-                                break;
-                        }
                         case Vehicle.Type.MC:
-                        {
-                            motorcycle = new Motorcycle();
 
-                                string regNr = entryRegistrationNumber.Text;
-                                motorcycle.RegistrationNumber = regNr;
-                                motorcycle.Manufacturer = entryManufacturer.Text;
-                                motorcycle.Model = entryModel.Text;
-                                motorcycle.ModelYear = entryModelYear.Text;
+                            vehicle = new Motorcycle();
+                            vehicle.RegistrationNumber = entryRegistrationNumber.Text;
+                            vehicle.Manufacturer = entryManufacturer.Text;
+                            vehicle.Model = entryModel.Text;
+                            vehicle.ModelYear = entryModelYear.Text;
 
-                                vehicleList.Add(motorcycle);
-                                listViewVehicles.ItemsSource = null;
-                                listViewVehicles.ItemsSource = vehicleList;
-                                break;
-                        }
+                            break;
+
+
                         case Vehicle.Type.Lastbil:
-                        {
-                            truck = new Truck();
 
-                                string regNr = entryRegistrationNumber.Text;
-                                truck.RegistrationNumber = regNr;
-                                truck.Manufacturer = entryManufacturer.Text;
-                                truck.Model = entryModel.Text;
-                                truck.ModelYear = entryModelYear.Text;
+                            vehicle = new Truck();
+                            vehicle.RegistrationNumber = entryRegistrationNumber.Text;
+                            vehicle.Manufacturer = entryManufacturer.Text;
+                            vehicle.Model = entryModel.Text;
+                            vehicle.ModelYear = entryModelYear.Text;
+                            break;
 
-                                vehicleList.Add(truck);
-                                listViewVehicles.ItemsSource = null;
-                                listViewVehicles.ItemsSource = vehicleList;
-                                break;
-                        }
+                        default:
+                            throw new Exception("Okänd fordonstyp vald.");
                     }
+                    vehicleList.Add(vehicle);
+                    listViewVehicles.ItemsSource = null;
+                    listViewVehicles.ItemsSource = vehicleList;
 
-                    entryRegistrationNumber.Text = string.Empty;
-                    entryManufacturer.Text = string.Empty;
-                    entryModel.Text = string.Empty;
-                    entryModelYear.Text = string.Empty;
+                    ClearEntryFields();
                 }
+
+
+
+                
                 catch (ArgumentException ex)
                 {
-                    DisplayAlert("Fel", ex.Message, "OK");
-                }
+                DisplayAlert("Fel", ex.Message, "OK");
             }
+        }
 
         }
 
@@ -141,6 +127,12 @@ namespace PRG_MAUI_Car_Register
                 labelSearchResult.Text = "Inget fordon hittades med det registreringsnumret.";
             }
         }
-
+        private void ClearEntryFields()
+        {
+            entryRegistrationNumber.Text = string.Empty;
+            entryManufacturer.Text = string.Empty;
+            entryModel.Text = string.Empty;
+            entryModelYear.Text = string.Empty;
+        }
     }
 }

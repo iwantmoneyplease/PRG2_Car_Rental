@@ -118,34 +118,5 @@
 
             }
         }
-
-        public override string ToString()
-        {
-            return registrationNumber + "\t" + vehicleType + "\t" + manufacturer + "\t" + model + "\t" + modelYear;
-        }
-    }
-
-    class Car : Vehicle
-    {
-        public Car() : base(Type.Bil)
-        {
-
-        }
-    }
-
-    class Motorcycle : Vehicle
-    {
-        public Motorcycle() : base(Type.MC)
-        {
-
-        }
-    }
-
-    class Truck : Vehicle
-    {
-        public Truck() : base(Type.Lastbil)
-        {
-
-        }
     }
 }
