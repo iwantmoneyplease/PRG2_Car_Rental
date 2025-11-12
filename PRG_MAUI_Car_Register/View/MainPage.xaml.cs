@@ -11,6 +11,8 @@ namespace PRG_MAUI_Car_Register
         {
             InitializeComponent();
             pickerType.SelectedIndex = 0;
+
+            // a comment
         }
 
         private void OnRegisterClicked(object sender, EventArgs e)
