@@ -61,16 +61,11 @@ namespace PRG_MAUI_Car_Register
 
                     ClearEntryFields();
                 }
-
-
-
-                
                 catch (ArgumentException ex)
                 {
-                DisplayAlert("Fel", ex.Message, "OK");
+                    DisplayAlert("Fel", ex.Message, "OK");
+                }
             }
-        }
-
         }
 
         private void OnRadioCheckedChanged(object sender, CheckedChangedEventArgs e)
