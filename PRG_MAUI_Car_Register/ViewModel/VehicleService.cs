@@ -12,14 +12,13 @@ namespace PRG_MAUI_Car_Register.ViewModel
 {
     class VehicleService
     {
-        // för att säkerställa singleton (se ovan)
+        //singleton
         private static VehicleService _instance;
         public static VehicleService Instance => _instance ??= new VehicleService();
 
-        // själva listan
+        //själva listan
         public ObservableCollection<Vehicle> VehicleItems { get; set; }
 
-        // några defaultvärden (ta bort denna sen)
         private VehicleService()
         {
             VehicleItems = new ObservableCollection<Vehicle>

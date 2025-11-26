@@ -1,6 +1,5 @@
 ﻿using PRG_MAUI_Car_Register.Model;
 using PRG_MAUI_Car_Register.ViewModel;
-using PRG_MAUI_Car_Register.ViewModel.PRG_MAUI_Car_Register.ViewModel;
 
 namespace PRG_MAUI_Car_Register
 {
