@@ -10,6 +10,8 @@
         private string model = string.Empty;
         private int modelYear = 0;
 
+        public abstract string GetDesc();
+
         // Konstruktor (en metod med samma namn som klassen, som returnerar ett objekt)
         public Vehicle(Type vehicleType) // en konstruktor kan, men måste inte, ta parametrar
         {

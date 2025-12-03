@@ -12,6 +12,10 @@ namespace PRG_MAUI_Car_Register.Model
         {
 
         }
+        public override string GetDesc()
+        {
+            return "This is a motorcycle. Sewilius seems like the type to own one.";
+        }
 
         public override string ToString()
         {

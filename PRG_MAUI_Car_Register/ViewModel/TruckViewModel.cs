@@ -37,7 +37,7 @@ class TruckViewModel : INotifyPropertyChanged
 
     public TruckViewModel()
     {
-        // Load cars ONCE when the page is created
+        //loads the car once the page is loade
         LoadCars();
 
         SearchCommand = new Command(SearchCar);
@@ -45,7 +45,7 @@ class TruckViewModel : INotifyPropertyChanged
 
     private void LoadCars()
     {
-        Cars.Clear();
+        Cars.Clear(); //clears cars before loading new q
         foreach (var v in VehicleService.Instance.VehicleItems
                      .Where(v => v.VehicleType == Vehicle.Type.Lastbil))
             Cars.Add(v);
@@ -61,6 +61,6 @@ class TruckViewModel : INotifyPropertyChanged
 
         SearchResult = result == null
             ? "Ingen bil hittades."
-            : $"{result.Manufacturer} {result.Model} ({result.ModelYear})";
+            : $"{result.RegistrationNumber} {result.Manufacturer} {result.Model} ({result.ModelYear})";
     }
 }

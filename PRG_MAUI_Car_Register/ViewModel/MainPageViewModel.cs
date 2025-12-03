@@ -117,12 +117,12 @@ namespace PRG_MAUI_Car_Register.ViewModel
 
                 VehicleService.Instance.VehicleItems.Add(vehicle);
 
-                // Clear input
+                //clear input
                 ClearEntryFields();
             }
             catch (ArgumentException ex)
             {
-                // Show a friendly pop-up instead of crashing
+                //shows a friendly pop-up instead of violently exploding the program like it did before
                 Application.Current.MainPage.DisplayAlert("Fel", ex.Message, "OK");
             }
         }
@@ -141,7 +141,7 @@ namespace PRG_MAUI_Car_Register.ViewModel
             }
             else
             {
-                SearchResult = $"{result.Manufacturer} {result.Model} ({result.ModelYear})";
+                SearchResult = $"{result.RegistrationNumber} {result.Manufacturer} {result.Model} ({result.ModelYear})";
             }
         }
 
