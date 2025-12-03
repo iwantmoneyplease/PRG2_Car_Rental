@@ -69,7 +69,7 @@
             get { return model; }
             set 
             {
-                if (!value.All(char.IsLetterOrDigit))
+                if (!value.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
                 {
                     throw new ArgumentException("Modellfältet måste ha giltigt innehåll");
                 }
@@ -109,7 +109,7 @@
             get { return manufacturer; }
             set
             {
-                if (!value.All(char.IsLetterOrDigit))
+                if (!value.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
                 {
                     throw new ArgumentException("Tillverkarfältet måste ha giltigt innehåll");
                 }
