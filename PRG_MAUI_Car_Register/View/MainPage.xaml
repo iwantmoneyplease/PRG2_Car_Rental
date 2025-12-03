@@ -24,14 +24,6 @@
                    Command="{Binding RegisterCommand}"
                    BackgroundColor="DarkRed"/>
 
-            <Label Text="Kategori:" FontAttributes="Bold" />
-            <HorizontalStackLayout HorizontalOptions="Center" Margin="0,0,0,20" Spacing="10" >
-                <RadioButton x:Name="radioAll" Content="Alla" IsChecked="True" CheckedChanged="OnRadioCheckedChanged" />
-                <RadioButton x:Name="radioCar" Content="Bilar" CheckedChanged="OnRadioCheckedChanged" />
-                <RadioButton x:Name="radioMC" Content="MC" CheckedChanged="OnRadioCheckedChanged" />
-                <RadioButton x:Name="radioTruck" Content="Lastbil" CheckedChanged="OnRadioCheckedChanged" />
-            </HorizontalStackLayout>
-
             <ListView ItemsSource="{Binding Vehicles}" Margin="0,0,0,20"/>
 
             <HorizontalStackLayout HorizontalOptions="FillAndExpand" Spacing="20">

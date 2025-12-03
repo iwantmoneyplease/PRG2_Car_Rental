@@ -9,9 +9,9 @@
 
     <TabBar>
         <ShellContent Title="Start" ContentTemplate="{DataTemplate local:MainPage}"/>
-        <ShellContent Title="Car" ContentTemplate="{DataTemplate local:Car}"/>
-        <ShellContent Title="Motorcycle" ContentTemplate="{DataTemplate local:Motorcycle}"/>
-        <ShellContent Title="Truck" ContentTemplate="{DataTemplate local:Truck}"/>
+        <ShellContent Title="Cars" ContentTemplate="{DataTemplate local:Car}"/>
+        <ShellContent Title="Motorcycles" ContentTemplate="{DataTemplate local:Motorcycle}"/>
+        <ShellContent Title="Trucks" ContentTemplate="{DataTemplate local:Truck}"/>
     </TabBar>
     
 

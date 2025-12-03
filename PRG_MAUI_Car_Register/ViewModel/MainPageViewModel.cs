@@ -13,6 +13,9 @@ namespace PRG_MAUI_Car_Register.ViewModel
 {
     class MainPageViewModel : INotifyPropertyChanged
     {
+        public IList<Vehicle.Type> VehicleTypes { get; } =
+        Enum.GetValues(typeof(Vehicle.Type)).Cast<Vehicle.Type>().ToList();
+
         //PropertyChanged looks for new input
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged([CallerMemberName] string name = null)
@@ -47,7 +50,7 @@ namespace PRG_MAUI_Car_Register.ViewModel
             set { _modelYear = value; OnPropertyChanged(); }
         }
 
-        private Vehicle.Type _selectedType;
+        private Vehicle.Type _selectedType = Vehicle.Type.Bil;
         public Vehicle.Type SelectedType
         {
             get => _selectedType;
@@ -85,39 +88,52 @@ namespace PRG_MAUI_Car_Register.ViewModel
         //COMMAND METHODS ------------------------------------------------------
         private void RegisterVehicle()
         {
-            Vehicle vehicle;
-
-            switch (SelectedType)
+            try
             {
-                case Vehicle.Type.Bil:
-                    vehicle = new Car();
-                    break;
+                Vehicle vehicle;
 
-                case Vehicle.Type.MC:
-                    vehicle = new Motorcycle();
-                    break;
+                switch (SelectedType)
+                {
+                    case Vehicle.Type.Bil:
+                        vehicle = new Car();
+                        break;
 
-                case Vehicle.Type.Lastbil:
-                    vehicle = new Truck();
-                    break;
+                    case Vehicle.Type.MC:
+                        vehicle = new Motorcycle();
+                        break;
 
-                default:
-                    throw new ArgumentException();
+                    case Vehicle.Type.Lastbil:
+                        vehicle = new Truck();
+                        break;
+
+                    default:
+                        throw new ArgumentException("Välj en giltig fordons typ");
+                }
+
+                vehicle.RegistrationNumber = RegistrationNumber;
+                vehicle.Manufacturer = Manufacturer;
+                vehicle.Model = Model;
+                vehicle.ModelYear = ModelYear;
+
+                VehicleService.Instance.VehicleItems.Add(vehicle);
+
+                // Clear input
+                ClearEntryFields();
             }
-            vehicle.RegistrationNumber = RegistrationNumber;
-            vehicle.Manufacturer = Manufacturer;
-            vehicle.Model = Model;
-            vehicle.ModelYear = ModelYear;
-
-            VehicleService.Instance.VehicleItems.Add(vehicle);
-
-            //clear input
-            ClearEntryFields();
+            catch (ArgumentException ex)
+            {
+                // Show a friendly pop-up instead of crashing
+                Application.Current.MainPage.DisplayAlert("Fel", ex.Message, "OK");
+            }
         }
 
         private void SearchVehicle()
         {
-            var result = Vehicles.FirstOrDefault(v => v.RegistrationNumber == SearchQuery);
+            var query = SearchQuery?.Trim() ?? "";
+            var result = Vehicles.FirstOrDefault(v =>
+                !string.IsNullOrEmpty(v.RegistrationNumber) &&
+                v.RegistrationNumber.Contains(query, StringComparison.OrdinalIgnoreCase)
+             );
 
             if (result == null)
             {
@@ -125,7 +141,7 @@ namespace PRG_MAUI_Car_Register.ViewModel
             }
             else
             {
-                SearchResult = result.Manufacturer + " " + result.Model + " (" + result.ModelYear + ")";
+                SearchResult = $"{result.Manufacturer} {result.Model} ({result.ModelYear})";
             }
         }
 

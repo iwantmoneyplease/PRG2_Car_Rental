@@ -1,9 +1,14 @@
-namespace PRG_MAUI_Car_Register.View;
+using PRG_MAUI_Car_Register.ViewModel;
+using PRG_MAUI_Car_Register.View;
 
-public partial class Car : ContentPage
+namespace PRG_MAUI_Car_Register.View
 {
-	public Car()
-	{
-		InitializeComponent();
-	}
+    public partial class Car : ContentPage
+    {
+        public Car()
+        {
+            InitializeComponent();
+            BindingContext = new CarViewModel();
+        }                   
+    }
 }

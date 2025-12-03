@@ -69,7 +69,7 @@
             {
                 if (!value.All(char.IsLetterOrDigit))
                 {
-                    throw new ArgumentException("Måste vara ett giltigt innehåll");
+                    throw new ArgumentException("Modellfältet måste ha giltigt innehåll");
                 }
                 else
                 {
@@ -109,7 +109,7 @@
             {
                 if (!value.All(char.IsLetterOrDigit))
                 {
-                    throw new ArgumentException("Måste vara ett giltigt innehåll");
+                    throw new ArgumentException("Tillverkarfältet måste ha giltigt innehåll");
                 }
                 else
                 {
