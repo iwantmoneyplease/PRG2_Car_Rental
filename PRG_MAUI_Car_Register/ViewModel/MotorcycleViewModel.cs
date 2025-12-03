@@ -16,7 +16,7 @@ class MotorcycleViewModel : INotifyPropertyChanged
     void OnPropertyChanged([CallerMemberName] string n = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(n));
 
-    public ObservableCollection<Vehicle> Cars { get; }
+    public ObservableCollection<Vehicle> Motorcycles { get; }
         = new ObservableCollection<Vehicle>();
 
     private string _searchQuery;
@@ -38,29 +38,29 @@ class MotorcycleViewModel : INotifyPropertyChanged
     public MotorcycleViewModel()
     {
         //loads the car once the page is loade
-        LoadCars();
+        LoadMotorcycles();
 
-        SearchCommand = new Command(SearchCar);
+        SearchCommand = new Command(SearchMotorcycle);
     }
 
-    private void LoadCars()
+    private void LoadMotorcycles()
     {
-        Cars.Clear(); //clears cars before loading new q
+        Motorcycles.Clear(); //clears cars before loading new q
         foreach (var v in VehicleService.Instance.VehicleItems
                      .Where(v => v.VehicleType == Vehicle.Type.MC))
-            Cars.Add(v);
+            Motorcycles.Add(v);
     }
 
-    private void SearchCar()
+    private void SearchMotorcycle()
     {
         var q = SearchQuery?.Trim() ?? "";
 
-        var result = Cars.FirstOrDefault(v =>
+        var result = Motorcycles.FirstOrDefault(v =>
             !string.IsNullOrEmpty(v.RegistrationNumber) &&
             v.RegistrationNumber.Contains(q, StringComparison.OrdinalIgnoreCase));
 
         SearchResult = result == null
-            ? "Ingen bil hittades."
+            ? "Ingen MC hittades."
             : $"{result.RegistrationNumber} {result.Manufacturer} {result.Model} ({result.ModelYear})";
     }
 }
