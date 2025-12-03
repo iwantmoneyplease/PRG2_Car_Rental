@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -116,6 +117,11 @@ namespace PRG_MAUI_Car_Register.ViewModel
                 vehicle.ModelYear = ModelYear;
 
                 VehicleService.Instance.VehicleItems.Add(vehicle);
+
+                foreach (var brum in VehicleService.Instance.VehicleItems)
+                {
+                    Debug.WriteLine($"Bilar finns i MainPage: {brum.Manufacturer}");
+                }
 
                 //clear input
                 ClearEntryFields();

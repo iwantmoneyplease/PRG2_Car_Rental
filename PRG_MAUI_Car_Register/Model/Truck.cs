@@ -19,7 +19,7 @@ namespace PRG_MAUI_Car_Register.Model
         }
         public override string ToString()
         {
-            return $"{Manufacturer} {Model} {ModelYear} - Lastbil";
+            return $"{RegistrationNumber} {Manufacturer} {Model} {ModelYear} - Lastbil";
         }
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -39,6 +40,11 @@ class CarViewModel : INotifyPropertyChanged
     {
         //loads the car once the page is loade
         LoadCars();
+
+        foreach (var vehicle in Cars)
+        {
+            Debug.WriteLine($"Bilar finns i Cars: {vehicle.Manufacturer}");
+        }
 
         SearchCommand = new Command(SearchCar);
     }
