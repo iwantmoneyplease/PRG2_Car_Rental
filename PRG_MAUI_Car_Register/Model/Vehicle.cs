@@ -10,6 +10,8 @@
         private string model = string.Empty;
         private int modelYear = 0;
 
+        public abstract string GetDesc();
+
         // Konstruktor (en metod med samma namn som klassen, som returnerar ett objekt)
         public Vehicle(Type vehicleType) // en konstruktor kan, men måste inte, ta parametrar
         {
@@ -67,9 +69,9 @@
             get { return model; }
             set 
             {
-                if (!value.All(char.IsLetterOrDigit))
+                if (!value.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
                 {
-                    throw new ArgumentException("Måste vara ett giltigt innehåll");
+                    throw new ArgumentException("Modellfältet måste ha giltigt innehåll");
                 }
                 else
                 {
@@ -107,9 +109,9 @@
             get { return manufacturer; }
             set
             {
-                if (!value.All(char.IsLetterOrDigit))
+                if (!value.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
                 {
-                    throw new ArgumentException("Måste vara ett giltigt innehåll");
+                    throw new ArgumentException("Tillverkarfältet måste ha giltigt innehåll");
                 }
                 else
                 {
@@ -117,35 +119,6 @@
                 }
 
             }
-        }
-
-        public override string ToString()
-        {
-            return registrationNumber + "\t" + vehicleType + "\t" + manufacturer + "\t" + model + "\t" + modelYear;
-        }
-    }
-
-    class Car : Vehicle
-    {
-        public Car() : base(Type.Bil)
-        {
-
-        }
-    }
-
-    class Motorcycle : Vehicle
-    {
-        public Motorcycle() : base(Type.MC)
-        {
-
-        }
-    }
-
-    class Truck : Vehicle
-    {
-        public Truck() : base(Type.Lastbil)
-        {
-
         }
     }
 }

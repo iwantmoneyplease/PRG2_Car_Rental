@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PRG_MAUI_Car_Register.View.Truck"
+             Title="Truck">
+    <VerticalStackLayout>
+        <ListView ItemsSource="{Binding Trucks}" Margin="0,0,0,20"/>
+
+        <HorizontalStackLayout HorizontalOptions="FillAndExpand" Spacing="20">
+            <Entry Placeholder="Sök registreringsnummer"
+                   Text="{Binding SearchQuery}" />
+
+            <Button Text="Sök"
+                    Command="{Binding SearchCommand}"
+                    BackgroundColor="DarkRed" />
+        </HorizontalStackLayout>
+        <Label Text="{Binding SearchResult}" TextColor="DarkRed" Margin="0,20,0,0"/>
+    </VerticalStackLayout>
+</ContentPage>
