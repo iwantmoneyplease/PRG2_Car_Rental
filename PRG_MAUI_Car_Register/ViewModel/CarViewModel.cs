@@ -11,12 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-class CarViewModel : INotifyPropertyChanged
+class CarViewModel : BasicINotifyPropertyChanged
 {
-    public event PropertyChangedEventHandler PropertyChanged;
-    void OnPropertyChanged([CallerMemberName] string n = null)
-        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(n));
-                    //fix naming scheme for vehicle, it should be "VehicleList"
     public ObservableCollection<Vehicle> Cars { get; }
         = new ObservableCollection<Vehicle>();
 

@@ -10,12 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-class TruckViewModel : INotifyPropertyChanged
+class TruckViewModel : BasicINotifyPropertyChanged
 {
-    public event PropertyChangedEventHandler PropertyChanged;
-    void OnPropertyChanged([CallerMemberName] string n = null)
-        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(n));
-
     public ObservableCollection<Vehicle> Trucks { get; }
         = new ObservableCollection<Vehicle>();
 
