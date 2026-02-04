@@ -1,6 +1,6 @@
 ﻿namespace PRG_MAUI_Car_Register.Model
 {
-    abstract class Vehicle
+    public abstract class Vehicle
     {
         // Medlemsvariabler
         public enum Type { Bil, MC, Lastbil };
