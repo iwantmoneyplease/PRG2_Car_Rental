@@ -67,7 +67,6 @@ namespace PRG_MAUI_Car_Register.ViewModel
         //Commands for buttons
         public ICommand RegisterCommand { get; }
         public ICommand SearchCommand { get; }
-        public ICommand SaveCommand { get; }
 
         //Search result
         private string _searchQuery;
@@ -155,6 +154,7 @@ namespace PRG_MAUI_Car_Register.ViewModel
 
                 //clear input
                 ClearEntryFields();
+                SaveAsync();
             }
             catch (ArgumentException ex)
             {

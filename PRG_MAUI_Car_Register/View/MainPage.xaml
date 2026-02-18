@@ -20,15 +20,10 @@
                    Text="{Binding ModelName}" />
             <Entry Placeholder="Modell år"
                    Text="{Binding ModelYear}"/>
-
-            <HorizontalStackLayout HorizontalOptions="FillAndExpand" Spacing="20">
-                <Button Text="Registrera"
+            <Button Text="Registrera"
                    Command="{Binding RegisterCommand}"
                    BackgroundColor="DarkRed"/>
-                <Button Text="DBG Save"
-                   Command="{Binding SaveCommand}"
-                   BackgroundColor="DarkRed"/>
-            </HorizontalStackLayout>
+
 
             <ListView ItemsSource="{Binding Vehicles}" Margin="0,0,0,20"/>
 
