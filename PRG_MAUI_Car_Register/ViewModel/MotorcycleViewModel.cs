@@ -61,6 +61,6 @@ class MotorcycleViewModel : INotifyPropertyChanged
 
         SearchResult = result == null
             ? "Ingen MC hittades."
-            : $"{result.RegistrationNumber} {result.Manufacturer} {result.Model} ({result.ModelYear})";
+            : $"{result.RegistrationNumber} {result.Manufacturer} {result.ModelName} ({result.ModelYear})";
     }
 }

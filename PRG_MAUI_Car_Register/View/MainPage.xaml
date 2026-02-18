@@ -17,12 +17,18 @@
             <Entry Placeholder="Tillverkare"
                    Text="{Binding Manufacturer}" />
             <Entry Placeholder="Modell"
-                   Text="{Binding Model}" />
+                   Text="{Binding ModelName}" />
             <Entry Placeholder="Modell år"
                    Text="{Binding ModelYear}"/>
-            <Button Text="Registrera"
+
+            <HorizontalStackLayout HorizontalOptions="FillAndExpand" Spacing="20">
+                <Button Text="Registrera"
                    Command="{Binding RegisterCommand}"
                    BackgroundColor="DarkRed"/>
+                <Button Text="DBG Save"
+                   Command="{Binding SaveCommand}"
+                   BackgroundColor="DarkRed"/>
+            </HorizontalStackLayout>
 
             <ListView ItemsSource="{Binding Vehicles}" Margin="0,0,0,20"/>
 

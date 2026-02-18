@@ -1,4 +1,5 @@
 ﻿using PRG_MAUI_Car_Register.Model;
+using PRG_MAUI_Car_Register.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +13,7 @@ using System.Windows.Input;
 
 namespace PRG_MAUI_Car_Register.ViewModel
 {
-    class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : INotifyPropertyChanged
     {
         public IList<Vehicle.Type> VehicleTypes { get; } =
         Enum.GetValues(typeof(Vehicle.Type)).Cast<Vehicle.Type>().ToList();
@@ -21,6 +22,8 @@ namespace PRG_MAUI_Car_Register.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged([CallerMemberName] string name = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+        private readonly IVehicleStorageService _storage;
 
         //INPUT (Get:Set) -------------------------------------------------------
         private string _registrationNumber;
@@ -37,11 +40,11 @@ namespace PRG_MAUI_Car_Register.ViewModel
             set { _manufacturer = value; OnPropertyChanged(); }
         }
 
-        private string _model;
-        public string Model
+        private string _modelName;
+        public string ModelName
         {
-            get => _model;
-            set { _model = value; OnPropertyChanged(); }
+            get => _modelName;
+            set { _modelName = value; OnPropertyChanged(); }
         }
 
         private string _modelYear;
@@ -64,6 +67,7 @@ namespace PRG_MAUI_Car_Register.ViewModel
         //Commands for buttons
         public ICommand RegisterCommand { get; }
         public ICommand SearchCommand { get; }
+        public ICommand SaveCommand { get; }
 
         //Search result
         private string _searchQuery;
@@ -82,8 +86,34 @@ namespace PRG_MAUI_Car_Register.ViewModel
 
         public MainPageViewModel()
         {
+            _storage = new JsonVehicleStorageService();
+
             RegisterCommand = new Command(RegisterVehicle);
             SearchCommand = new Command(SearchVehicle);
+
+            SaveCommand = new Command(async () => await SaveAsync());
+            _ = LoadAsync();
+        }
+
+        private async Task LoadAsync()
+        {
+            try
+            {
+                var vehicles = await _storage.LoadAsync();
+                Vehicles.Clear();
+
+                foreach (var vehicle in vehicles)
+                    Vehicles.Add(vehicle);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Load failed: " + ex);
+            }
+        }
+
+        private async Task SaveAsync()
+        {
+            await _storage.SaveAsync(Vehicles);
         }
 
         //COMMAND METHODS ------------------------------------------------------
@@ -113,7 +143,7 @@ namespace PRG_MAUI_Car_Register.ViewModel
 
                 vehicle.RegistrationNumber = RegistrationNumber;
                 vehicle.Manufacturer = Manufacturer;
-                vehicle.Model = Model;
+                vehicle.ModelName = ModelName;
                 vehicle.ModelYear = ModelYear;
 
                 VehicleService.Instance.VehicleItems.Add(vehicle);
@@ -147,7 +177,7 @@ namespace PRG_MAUI_Car_Register.ViewModel
             }
             else
             {
-                SearchResult = $"{result.RegistrationNumber} {result.Manufacturer} {result.Model} ({result.ModelYear})";
+                SearchResult = $"{result.RegistrationNumber} {result.Manufacturer} {result.ModelName} ({result.ModelYear})";
             }
         }
 
@@ -155,7 +185,7 @@ namespace PRG_MAUI_Car_Register.ViewModel
         {
             RegistrationNumber = string.Empty;
             Manufacturer = string.Empty;
-            Model = string.Empty;
+            ModelName = string.Empty;
             ModelYear = string.Empty;
         }
     }

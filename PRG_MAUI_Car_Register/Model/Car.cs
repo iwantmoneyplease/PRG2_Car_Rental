@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PRG_MAUI_Car_Register.Model
 {
-    class Car : Vehicle
+    public class Car : Vehicle
     {
         public Car() : base(Type.Bil)
         {
@@ -18,7 +18,7 @@ namespace PRG_MAUI_Car_Register.Model
         }
         public override string ToString()
         {
-            return $"{RegistrationNumber} {Manufacturer} {Model} {ModelYear} - Bil";
+            return $"{RegistrationNumber} {Manufacturer} {ModelName} {ModelYear} - Bil";
         }
     }
 }

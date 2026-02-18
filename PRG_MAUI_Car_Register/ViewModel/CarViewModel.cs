@@ -67,7 +67,7 @@ class CarViewModel : INotifyPropertyChanged
 
         SearchResult = result == null
             ? "Ingen bil hittades."
-            : $"{result.RegistrationNumber} {result.Manufacturer} {result.Model} ({result.ModelYear})";
+            : $"{result.RegistrationNumber} {result.Manufacturer} {result.ModelName} ({result.ModelYear})";
     }
 }
 

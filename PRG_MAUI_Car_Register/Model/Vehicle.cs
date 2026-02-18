@@ -1,5 +1,11 @@
-﻿namespace PRG_MAUI_Car_Register.Model
+﻿using System.Text.Json.Serialization;
+
+namespace PRG_MAUI_Car_Register.Model
 {
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$type")]
+    [JsonDerivedType(typeof(Car), "car")]
+    [JsonDerivedType(typeof(Motorcycle), "motorcycle")]
+    [JsonDerivedType(typeof(Truck), "truck")]
     public abstract class Vehicle
     {
         // Medlemsvariabler
@@ -7,12 +13,13 @@
         private Type vehicleType;
         private string registrationNumber = string.Empty;
         private string manufacturer = string.Empty;
-        private string model = string.Empty;
+        private string modelName = string.Empty;
         private int modelYear = 0;
 
         public abstract string GetDesc();
 
         // Konstruktor (en metod med samma namn som klassen, som returnerar ett objekt)
+        protected Vehicle() { }
         public Vehicle(Type vehicleType) // en konstruktor kan, men måste inte, ta parametrar
         {
             this.vehicleType = vehicleType;
@@ -64,9 +71,9 @@
         }
 
         //TODO Tillverkare ska valideras, sparas i objektet och visas i UI
-        public string Model
+        public string ModelName
         {
-            get { return model; }
+            get { return modelName; }
             set 
             {
                 if (!value.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)))
@@ -75,7 +82,7 @@
                 }
                 else
                 {
-                    model = value;
+                    modelName = value;
                 }
             }
         }

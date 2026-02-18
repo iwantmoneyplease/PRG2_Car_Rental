@@ -61,6 +61,6 @@ class TruckViewModel : INotifyPropertyChanged
 
         SearchResult = result == null
             ? "Ingen lastbil hittades."
-            : $"{result.RegistrationNumber} {result.Manufacturer} {result.Model} ({result.ModelYear})";
+            : $"{result.RegistrationNumber} {result.Manufacturer} {result.ModelName} ({result.ModelYear})";
     }
 }
